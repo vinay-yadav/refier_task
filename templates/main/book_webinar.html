@@ -1,0 +1,24 @@
+{% extends 'main/index.html' %}
+
+{% block content %}
+<div class="container-fluid"
+     style="display: flex; flex-direction: column; height: 90vh; justify-content: center; align-items: center;">
+    <h3>WEBINAR: {{webinar.title}}</h3>
+    <h5>ON: {{webinar.event_on}}</h5>
+    <div class="p-3" style="width: 500px;">
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-primary w-100">
+                {% if webinar.cost == '0' %}
+                    Book Now
+                {% else %}
+                    Pay {{ webinar.cost }} Now
+                {% endif %}
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

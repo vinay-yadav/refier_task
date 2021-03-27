@@ -1,0 +1,106 @@
+{% extends 'main/index.html' %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert" style="width: fit-content; margin: auto;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <h1 class="text-muted fw-bolder">Upcoming Free Events</h1>
+    <div class="row">
+        {% for free in free_web %}
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card my-3">
+                <h4 class="card-header">{{ free.title }}</h4>
+                <div class="card-body">
+                    {% if free.sub_heading %}
+                    <h5 class="card-title">{{ free.sub_heading }}</h5>
+                    {% endif %}
+                    <p class="card-text"
+                       style="height: 100px; overflow: hidden; text-align: justify;">
+                        {{ free.description }}
+                    </p>
+                    <div class="card-text d-flex flex-row justify-content-between fw-bold">
+                        <div>{{ free.event_on.date }}</div>
+                        <div>{{ free.event_on.time }}</div>
+                    </div>
+                    <div class="card-text d-flex flex-row justify-content-between fw-bold py-2">
+                        <div>{{ free.instructor }}</div>
+                        <div>Free</div>
+                    </div>
+                    <div class="card-footer d-flex flex-row justify-content-between">
+                        <a href="{% url 'main:webinar' free.id %}" class="btn btn-primary">CLICK TO KNOW MORE</a>
+                        <div class="card-text d-flex flex-row">
+                            <div class="mx-2">
+                                <i class="bi bi-hand-thumbs-up" style="cursor: pointer" data-id="{{ free.id }}"
+                                   onclick="upVote(this)"></i>
+                                <span>{{ free.up_vote }}</span>
+                            </div>
+                            <div class="mx-2">
+                                <i class="bi bi-hand-thumbs-down" style="cursor: pointer" data-id="{{ free.id }}"
+                                   onclick="downVote(this)"></i>
+                                <span>{{ free.down_vote }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h1 class="text-muted fw-bolder">Upcoming Premium Events</h1>
+    <div class="row">
+        {% for pre in premium %}
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card my-3">
+                <h4 class="card-header">{{ pre.title }}</h4>
+                <div class="card-body">
+                    {% if pre.sub_heading %}
+                    <h5 class="card-title">{{ pre.sub_heading }}</h5>
+                    {% endif %}
+
+
+                    <p class="card-text"
+                       style="height: 100px; overflow: hidden; text-align: justify">
+                        {% if pre.description %}
+                        {{ pre.description }}
+                        {% else %}
+                        No description available!!
+                        {% endif %}
+                    </p>
+
+                    <div class="card-text d-flex flex-row justify-content-between fw-bold">
+                        <div>{{ pre.event_on.date }}</div>
+                        <div>{{ pre.event_on.time }}</div>
+                    </div>
+                    <div class="card-text d-flex flex-row justify-content-between fw-bold py-2">
+                        <div>{{ pre.instructor }}</div>
+                        <div>{{ pre.cost }}</div>
+                    </div>
+                    <div class="card-footer d-flex flex-row justify-content-between">
+                        <a href="{% url 'main:webinar' pre.id %}" class="btn btn-primary">CLICK TO KNOW MORE</a>
+                        <div class="card-text d-flex flex-row">
+                            <div class="mx-2">
+                                <i class="bi bi-hand-thumbs-up" style="cursor: pointer" data-id="{{ pre.id }}"
+                                   onclick="upVote(this)"></i>
+                                <span>{{ pre.up_vote }}</span>
+                            </div>
+                            <div class="mx-2">
+                                <i class="bi bi-hand-thumbs-down" style="cursor: pointer" data-id="{{ pre.id }}"
+                                   onclick="downVote(this)"></i>
+                                <span>{{ pre.down_vote }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
