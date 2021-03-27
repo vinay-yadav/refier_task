@@ -6,6 +6,7 @@ from .models import Webinar, Booking
 
 
 def home(request):
+    """home page for all webinars"""
     return render(
         request,
         'main/home.html',
@@ -18,6 +19,7 @@ def home(request):
 
 
 def webinar(request, webinar_id):
+    """webinar view page"""
     return render(
         request,
         'main/webinar.html',
@@ -29,6 +31,7 @@ def webinar(request, webinar_id):
 
 
 def book_webinar(request, webinar_id):
+    """book webinar page"""
     form = BookingForm(request.POST or None)
     webinar_ins = Webinar.objects.get(id=webinar_id)
 
@@ -50,6 +53,7 @@ def book_webinar(request, webinar_id):
 
 
 def all_bookings(request):
+    """page for viewing all bookings"""
     return render(
         request,
         'main/bookings.html',
@@ -61,6 +65,7 @@ def all_bookings(request):
 
 
 def up_vote_webinar(request):
+    """route for up_vote a webinar"""
     if request.method == 'POST':
         webinar_ins = Webinar.objects.get(id=request.POST.get('id'))
         webinar_ins.up_vote += 1
@@ -70,6 +75,7 @@ def up_vote_webinar(request):
 
 
 def down_vote_webinar(request):
+    """route for down_vote a webinar"""
     if request.method == 'POST':
         webinar_ins = Webinar.objects.get(id=request.POST.get('id'))
         webinar_ins.down_vote += 1
