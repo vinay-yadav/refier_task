@@ -8,9 +8,15 @@
             {% if webinar.sub_heading %}
             <div class="card-subheader fs-3">{{ webinar.sub_heading }}</div>
             {% endif %}
-            <div class="card-text">{{ webinar.event_on.date }}</div>
-            <div class="card-text">{{ webinar.event_on.time }}</div>
             <div class="card-text">
+                <i class="bi bi-calendar-week"></i>
+                {{ webinar.event_on.date }}
+            </div>
+            <div class="card-text">
+                <i class="bi bi-alarm"></i>
+                {{ webinar.event_on.time }}
+            </div>
+            <div class="card-text">Rs.
                 {% if webinar.cost == '0' %}
                     Free
                 {% else %}

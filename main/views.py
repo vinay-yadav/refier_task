@@ -11,8 +11,8 @@ def home(request):
         'main/home.html',
         {
             'title': 'All Webinars',
-            'free_web': Webinar.objects.filter(cost='0'),
-            'premium': Webinar.objects.exclude(cost='0')
+            'free_web': Webinar.objects.filter(cost='0').order_by('event_on'),
+            'premium': Webinar.objects.exclude(cost='0').order_by('event_on')
         }
     )
 
