@@ -14,7 +14,7 @@ SECRET_KEY = 'z(lc@s5*y-bjlpwl=n#e9jauumolmj*2cf-u+==v6e8&plvl=6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['vinay-webinar.herokuapp.com', '0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['vinay-webinar.herokuapp.com', '0.0.0.0', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -26,7 +26,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main'
+    'main',
+    'api',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
