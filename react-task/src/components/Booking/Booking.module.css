@@ -1,0 +1,32 @@
+.Card {
+    justify-content: center;
+    margin-top: 100px;
+    display: flex;
+}
+
+.Card button {
+    padding: 10px;
+    margin: 40px auto;
+    display: block;
+}
+
+.Card > div {
+    box-sizing: border-box;
+    padding: 30px;
+    height: 400px;
+    background-color: salmon;
+    width: 500px;
+}
+
+.Title {
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1.8rem;
+}
+
+.Info div {
+    margin: 10px 10px;
+    font-size: 20px;
+}

@@ -1,0 +1,9 @@
+.Bookings {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.Bookings table {
+    width: 80%;
+}
