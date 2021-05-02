@@ -8,39 +8,46 @@ import * as actionCreator from '../../store/actions/booking';
 class Bookings extends Component {
     componentDidMount() {
         if (this.props.bookings.length === 0 && !this.props.loading)
-        this.props.onFetchBookings();
+            this.props.onFetchBookings();
     }
 
     render() {
         let showData = <Spinner/>;
 
-        const allBookings = this.props.bookings.map(ele => {
-            return (
-                <tr key={ele.bookId}>
-                    <td>{ele.bookId}</td>
-                    <td>{ele.name}</td>
-                    <td>{ele.mobile}</td>
-                    <td>{ele.email}</td>
-                    <td>{ele.webinar.title}</td>
-                    <td>{ele.webinar.event_on}</td>
-                </tr>
-            )
-        })
-
         if (!this.props.loading) {
+            const dateTimeHandler = (date) => {
+                const dateTime = new Date(date);
+                const dateP = `${dateTime.getDate()}-${dateTime.getMonth()}-${dateTime.getFullYear()}`;
+                const timeP = `${dateTime.getHours()}:${dateTime.getMinutes()}`;
+                return `${dateP} ${timeP}`;
+            }
+
+            const allBookings = this.props.bookings.map(ele => {
+                return (
+                    <tr key={ele.bookId}>
+                        <td>{ele.bookId}</td>
+                        <td>{ele.name}</td>
+                        <td>{ele.mobile}</td>
+                        <td>{ele.email}</td>
+                        <td>{ele.webinar.title}</td>
+                        <td>{dateTimeHandler(ele.webinar.event_on)}</td>
+                    </tr>
+                )
+            })
+
             showData = (
                 <div className={classes.Bookings}>
                     <table>
                         <tbody>
-                            <tr>
-                                <th>Booking ID</th>
-                                <th>Name</th>
-                                <th>Mobile</th>
-                                <th>Email</th>
-                                <th>Webinar</th>
-                                <th>Event On</th>
-                            </tr>
-                            {allBookings}
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Webinar</th>
+                            <th>Event On</th>
+                        </tr>
+                        {allBookings}
                         </tbody>
                     </table>
                 </div>

@@ -2,6 +2,8 @@ import React from 'react';
 import classes from './Webinar.module.css';
 
 const webinar = (props) => {
+    const dateTime = new Date(props.event_on);
+
     return (
         <div className={classes.Webinar}>
             <div>
@@ -11,8 +13,8 @@ const webinar = (props) => {
                 <div>
                     <p>{props.description}</p>
                     <div className={classes.Event}>
-                        <div>{props.event_on}</div>
-                        <div>DATE</div>
+                        <div>{dateTime.getDate()}-{dateTime.getMonth()}-{dateTime.getFullYear()}</div>
+                        <div>{dateTime.getHours()}:{dateTime.getMinutes()}</div>
                     </div>
                     <div className={classes.Event}>
                         <div><strong>{props.instructor}</strong></div>

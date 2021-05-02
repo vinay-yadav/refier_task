@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import './App.css';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 
 import Layout from "./hoc/Layout/Layout";
 import DisplayWebinar from './containers/DisplayWebinar/DisplayWebinar';
@@ -43,6 +43,7 @@ function App() {
                         render={() => <Suspense fallback={(<div>Loading...</div>)}><Bookings />
                         </Suspense>}
                     />
+                    <Redirect to="/"/>
                 </Switch>
             </Layout>
         </div>
