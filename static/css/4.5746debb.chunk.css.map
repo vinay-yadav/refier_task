@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/containers/Bookings/Bookings.module.css"],"names":[],"mappings":"AAAA,0BACI,oBAAa,CAAb,YAAa,CACb,8BAAuB,CAAvB,sBAAuB,CACvB,eACJ,CAEA,gCACI,SACJ","file":"4.5746debb.chunk.css","sourcesContent":[".Bookings {\n    display: flex;\n    justify-content: center;\n    margin-top: 50px;\n}\n\n.Bookings table {\n    width: 80%;\n}"]}
