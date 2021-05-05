@@ -5,12 +5,22 @@ import {withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import UserForm from './UserBooking/UserBooking';
+import * as actions from '../../store/actions/webinar';
 
 const booking = (props) => {
+    const upVoteHandler = (webinar) => {
+        props.onUpVote(webinar);
+    }
+
+    const downVoteHandler = (webinar) => {
+        props.onDownVote(webinar);
+    }
+
     let pageData = <Redirect to='/'/>
 
     if (props.free.length !== 0 && props.premium.length !== 0) {
-        const data = props.free.concat(props.premium).find(element => element.id === props.match.params.webId);
+        const data = props.free.concat(props.premium).find(element => element.id === +props.match.params.webId);
+
         pageData = (
             <React.Fragment>
                 <div className={classes.Card}>
@@ -20,6 +30,10 @@ const booking = (props) => {
                             <div> March 30, 2021</div>
                             <div> 5 p.m.</div>
                             <div>{data.instructor}</div>
+                            Up Vote
+                            <div className={classes.Vote} onClick={() => upVoteHandler(data)}>{data.up_vote}</div>
+                            Down Vote
+                            <div className={classes.Vote} onClick={() => downVoteHandler(data)}>{data.down_vote}</div>
                         </div>
                         <button onClick={() => props.history.replace(props.match.url + '/booking')}>
                             Book Your Seat
@@ -44,4 +58,11 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(withRouter(booking));
+const mapDispatchToProps = dispatch => {
+    return {
+        onUpVote: (webinar) => dispatch(actions.upVoteProcess(webinar)),
+        onDownVote: (webinar) => dispatch(actions.downVoteProcess(webinar))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(booking));

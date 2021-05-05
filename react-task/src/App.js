@@ -17,6 +17,8 @@ const Bookings = React.lazy(
     () => import('./containers/Bookings/Bookings')
 )
 
+const Authentication = React.lazy(() => import('./containers/Auth/Auth'));
+
 function App() {
     return (
         <div className="App">
@@ -41,6 +43,11 @@ function App() {
                     <Route
                         path="/bookings"
                         render={() => <Suspense fallback={(<div>Loading...</div>)}><Bookings />
+                        </Suspense>}
+                    />
+                    <Route
+                        path="/login"
+                        render={() => <Suspense fallback={(<div>Loading...</div>)}><Authentication />
                         </Suspense>}
                     />
                     <Redirect to="/"/>

@@ -25,30 +25,24 @@ export const fetchBookings = () => {
     return dispatch => {
         dispatch(fetchBookingsStart());
 
-        axios.get('/bookings.json')
+        axios.get('/api/all-bookings/')
             .then(res => {
-                console.log(res);
-                const bookings = Object.keys(res.data).map(ele => ({
-                    ...res.data[ele],
-                    bookId: ele
-                }));
-                dispatch(fetchBookingsSuccess(bookings));
+                dispatch(fetchBookingsSuccess(res.data));
             })
             .catch(err => dispatch(fetchBookingsFail()));
     }
 }
 
 export const createBookingSuccess = (formData) => {
-    console.log(formData, 'createBookingSuccess');
     return {
         type: actionTypes.CREATE_BOOKING_SUCCESS,
         data: formData
     }
 }
 
-export const createBooking = (formData) => {
+export const createBooking = (webId, formData) => {
     return dispatch => {
-        axios.post('/bookings.json', formData)
+        axios.post('/api/create-booking/' + webId + '/', formData)
             .then(response => {
                 dispatch(createBookingSuccess({
                     ...formData,

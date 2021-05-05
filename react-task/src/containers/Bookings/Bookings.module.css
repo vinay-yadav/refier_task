@@ -7,3 +7,7 @@
 .Bookings table {
     width: 80%;
 }
+
+.Bookings td, th {
+    text-align: left;
+}

@@ -16,7 +16,8 @@ class BookingSerializer(serializers.ModelSerializer):
 
 class AllBookingSerializer(serializers.ModelSerializer):
     event = serializers.CharField(source='event.title', read_only=True)
+    event_on = serializers.DateTimeField(source='event.created', read_only=True)
 
     class Meta:
         model = Booking
-        fields = ['name', 'email', 'mobile', 'event']
+        fields = ['name', 'email', 'mobile', 'event', 'event_on']

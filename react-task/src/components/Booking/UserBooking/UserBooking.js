@@ -60,17 +60,13 @@ class UserBooking extends Component {
 
     formSubmitHandler = (event) => {
         event.preventDefault();
-        console.log('form submitted', this.props.webinarId);
-        
+
         const formData = {};
         for(let key in this.state.formFields){
             formData[key] = this.state.formFields[key].value;
         }
 
-        formData['webinar'] = this.props.webinarData;
-
-        console.log(formData);
-        this.props.onCreateBooking(formData);
+        this.props.onCreateBooking(this.props.webinarData.id, formData);
     }
 
     formValidation = (value, rules) => {
@@ -145,7 +141,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onCreateBooking: (formData) => dispatch(actionCreator.createBooking(formData)),
+        onCreateBooking: (webId, formData) => dispatch(actionCreator.createBooking(webId, formData)),
         onInitBooking: () => dispatch(actionCreator.createBookingInit())
     }
 }

@@ -27,18 +27,107 @@ export const fetchWebinar = () => {
     return dispatch => {
         dispatch(fetchWebinarStart());
 
-        axios.get('/webinars.json')
+        axios.get('/api/')
             .then(response => {
-                const webinars = Object.keys(response.data).map(element => {
-                    return {
-                        ...response.data[element],
-                        id: element
-                    }
-                });
-                dispatch(fetchWebinarSuccess(webinars));
+                dispatch(fetchWebinarSuccess(response.data));
             })
             .catch(error => {
                 dispatch(fetchWebinarFail());
             })
     }
 }
+
+export const upVoteHandler = (premium, free) => {
+    return {
+        type: actionTypes.UP_VOTE,
+        premium: premium,
+        free: free
+    }
+}
+
+export const upVoteProcess = (webinar) => {
+    return (dispatch, getState) => {
+
+        axios.post('/api/up-vote/' + webinar.id + '/')
+            .then(res => {
+                let free = null;
+                let premium = null;
+
+                if (webinar.cost === "0") {
+                    free = getState().free.map(element => {
+                        if (element.id === webinar.id) {
+                            return {
+                                ...element,
+                                up_vote: element.up_vote + 1
+                            }
+                        } else {
+                            return element
+                        }
+                    })
+                } else {
+                    premium = getState().premium.map(element => {
+                        if (element.id === webinar.id) {
+                            return {
+                                ...element,
+                                up_vote: element.up_vote + 1
+                            }
+                        } else {
+                            return element
+                        }
+                    })
+                }
+
+                dispatch(upVoteHandler(premium, free));
+            })
+            .catch(err => console.log(err));
+    }
+}
+
+
+export const downVoteHandler = (premium, free) => {
+    return {
+        type: actionTypes.DOWN_VOTE,
+        premium: premium,
+        free: free
+    }
+}
+
+
+export const downVoteProcess = (webinar) => {
+    return (dispatch, getState) => {
+
+        axios.post('/api/down-vote/' + webinar.id + '/')
+            .then(res => {
+                let free = null;
+                let premium = null;
+
+                if (webinar.cost === "0") {
+                    free = getState().free.map(element => {
+                        if (element.id === webinar.id) {
+                            return {
+                                ...element,
+                                down_vote: element.down_vote + 1
+                            }
+                        } else {
+                            return element
+                        }
+                    })
+                } else {
+                    premium = getState().premium.map(element => {
+                        if (element.id === webinar.id) {
+                            return {
+                                ...element,
+                                down_vote: element.down_vote + 1
+                            }
+                        } else {
+                            return element
+                        }
+                    })
+                }
+
+                dispatch(downVoteHandler(premium, free));
+            })
+            .catch(err => console.log(err));
+    }
+}
+

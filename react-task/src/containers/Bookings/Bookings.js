@@ -24,13 +24,12 @@ class Bookings extends Component {
 
             const allBookings = this.props.bookings.map(ele => {
                 return (
-                    <tr key={ele.bookId}>
-                        <td>{ele.bookId}</td>
+                    <tr key={ele.event}>
                         <td>{ele.name}</td>
                         <td>{ele.mobile}</td>
                         <td>{ele.email}</td>
-                        <td>{ele.webinar.title}</td>
-                        <td>{dateTimeHandler(ele.webinar.event_on)}</td>
+                        <td>{ele.event}</td>
+                        <td>{dateTimeHandler(ele.event_on)}</td>
                     </tr>
                 )
             })
@@ -40,7 +39,6 @@ class Bookings extends Component {
                     <table>
                         <tbody>
                         <tr>
-                            <th>Booking ID</th>
                             <th>Name</th>
                             <th>Mobile</th>
                             <th>Email</th>

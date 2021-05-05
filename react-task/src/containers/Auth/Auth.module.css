@@ -1,0 +1,9 @@
+.Auth {
+    width: 30%;
+    margin: 50px auto;
+}
+
+.Auth button {
+    margin: 10px;
+    font-size: 15px;
+}

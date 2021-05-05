@@ -11,7 +11,7 @@ import thunk from 'redux-thunk';
 import reducer from './store/reducers/reducer'
 import axios from "axios";
 
-axios.defaults.baseURL = 'https://mywebinars-60679-default-rtdb.firebaseio.com';
+axios.defaults.baseURL = "http://127.0.0.1:8000/";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

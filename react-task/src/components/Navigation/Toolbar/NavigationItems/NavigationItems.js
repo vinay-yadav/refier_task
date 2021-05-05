@@ -8,6 +8,7 @@ const navigationsItems = (props) => (
         <NavigationItem link="/webinar/premium">Premium</NavigationItem>
         <NavigationItem link="/webinar/free">Free</NavigationItem>
         <NavigationItem link="/bookings">Bookings</NavigationItem>
+        <NavigationItem link="/login">Login</NavigationItem>
     </ul>
 );
 

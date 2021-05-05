@@ -54,6 +54,18 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 booked: false
             }
+        case (actionTypes.UP_VOTE):
+            return {
+                ...state,
+                free: action.free === null ? [...state.free] : action.free,
+                premium: action.premium === null ? [...state.premium] : action.premium
+            }
+        case (actionTypes.DOWN_VOTE):
+            return {
+                ...state,
+                free: action.free === null ? [...state.free] : action.free,
+                premium: action.premium === null ? [...state.premium] : action.premium
+            }
         default:
             return state;
     }

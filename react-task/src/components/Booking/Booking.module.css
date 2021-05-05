@@ -6,8 +6,9 @@
 
 .Card button {
     padding: 10px;
-    margin: 40px auto;
+    margin: 10px auto;
     display: block;
+    border-radius: 5px;
 }
 
 .Card > div {
@@ -29,4 +30,13 @@
 .Info div {
     margin: 10px 10px;
     font-size: 20px;
+}
+
+.Vote {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 5px 5px;
+    border-radius: 5px;
+    background-color: #eeeaea;
+    cursor: pointer;
 }

@@ -23,8 +23,8 @@ const webinar = (props) => {
                     <div className={classes.Event}>
                         <div className={classes.Btn} onClick={props.btnClicked}>click to know more</div>
                         <div className={classes.Votes}>
-                            <span>{props.up_vote}</span>
-                            <span>{props.down_vote}</span>
+                            <span onClick={props.upClick}>{props.up_vote}</span>
+                            <span onClick={props.downClick}>{props.down_vote}</span>
                         </div>
                     </div>
                 </div>
