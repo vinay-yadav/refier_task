@@ -1,0 +1,30 @@
+.Container {
+    max-width: 800px;
+    margin: auto;
+    background-color: #eee;
+    padding: 2rem;
+    text-align: left;
+}
+
+.Container span {
+    background-color: #c72727;
+    color: #fff;
+    padding: 0.15rem;
+    border-radius: 15px
+;
+}
+
+.Container p {
+    font-size: 1.2rem;
+    text-align: justify;
+}
+
+.Container ul li {
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.Container a {
+    text-decoration: none;
+    color: purple;
+}

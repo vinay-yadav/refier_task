@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import UserForm from './UserBooking/UserBooking';
 import * as actions from '../../store/actions/webinar';
+import PreRequisite from '../PreRequisite/PreRequisite';
 
 const booking = (props) => {
     const upVoteHandler = (webinar) => {
@@ -16,10 +17,22 @@ const booking = (props) => {
         props.onDownVote(webinar);
     }
 
+    let preRequisite = null;
+
     let pageData = <Redirect to='/'/>
 
     if (props.free.length !== 0 && props.premium.length !== 0) {
         const data = props.free.concat(props.premium).find(element => element.id === +props.match.params.webId);
+
+        if (data.id === 10) {
+            preRequisite = (
+                <React.Fragment>
+                    <br/><br/>
+                    <PreRequisite/>
+                    <br/><br/>
+                </React.Fragment>
+            )
+        }
 
         pageData = (
             <React.Fragment>
@@ -40,6 +53,7 @@ const booking = (props) => {
                         </button>
                     </div>
                 </div>
+                {preRequisite}
                 <Route path={props.match.url + '/booking'} exact
                        render={() => <UserForm webinarData={data}/>}
                 />

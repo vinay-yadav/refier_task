@@ -4,6 +4,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 
 import Layout from "./hoc/Layout/Layout";
 import DisplayWebinar from './containers/DisplayWebinar/DisplayWebinar';
+import Editor from './containers/Editor/Editor';
 
 const Webinar = React.lazy(
     () => import('./components/WebinarLink/WebinarLink')
@@ -50,6 +51,7 @@ function App() {
                         render={() => <Suspense fallback={(<div>Loading...</div>)}><Authentication />
                         </Suspense>}
                     />
+                    <Route path='/editor' component={Editor} />
                     <Redirect to="/"/>
                 </Switch>
             </Layout>

@@ -1,0 +1,29 @@
+.Editor {
+    max-width: 1000px;
+    margin: 100px auto;
+    padding: 1rem;
+}
+
+/*.Editor:first-child {*/
+/*    border: 1px solid #333;*/
+/*}*/
+
+
+.wrapperClassName {
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
+.editorClassName {
+    background-color:lightgray;
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
+.toolbar-class {
+    border: 1px solid #ccc;
+}
+
+@media (max-width: 500px) {
+    .Editor {
+        max-width: 370px;
+    }
+}
